@@ -29,16 +29,18 @@ def order():
     if request.method == 'POST':
         name = request.form.get('name')
         pepperoni = request.form.get('pepperoni')
-        pepperoni_size = request.form.get('pepperoni_size')
-        mushroom = request.form.get('mushroom')
-        mushroom_size = request.form.get('mushroom_size')
         cheese = request.form.get('cheese')
-        cheese_size = request.form.get('cheese_size')
+        veggie = request.form.get('veggie')
+        meat_lovers = request.form.get('meat_lovers')
+        vegan = request.form.get('vegan')
+        quattro_formaggi = request.form.get('quattro_formaggi')
+        quattro_stagioni = request.form.get('quattro_stagioni')
+        supreme = request.form.get('supreme')
+        tonno = request.form.get('tonno')
         conn = get_db()
         cursor = conn.cursor()
-        cursor.execute('''INSERT INTO orders (name, pepperoni, pepperoni_size, mushroom, mushroom_size, cheese, cheese_size, status)
-                          VALUES (?, ?, ?, ?, ?, ?, ?, "pending")''', 
-                       (name, pepperoni, pepperoni_size, mushroom, mushroom_size, cheese, cheese_size))
+        cursor.execute('''INSERT INTO orders (name, pepperoni, cheese, veggie, meat_lovers, vegan, quattro_formaggi, quattro_stagioni, supreme, tonno, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                       (name, pepperoni, cheese, veggie, meat_lovers, vegan, quattro_formaggi, quattro_stagioni, supreme, tonno, 'pending'))
         conn.commit()
         cursor.close()
         return render_template('order.html', name=name)
@@ -67,6 +69,6 @@ if __name__ == '__main__':
     with app.app_context():
         db = get_db()
         cursor = db.cursor()
-        cursor.execute('CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, pepperoni TEXT, pepperoni_size TEXT, mushroom TEXT, mushroom_size TEXT, cheese TEXT, cheese_size TEXT, status TEXT DEFAULT "pending")')
+        cursor.execute('CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, pepperoni TEXT, cheese TEXT, veggie TEXT, meat_lovers TEXT, vegan TEXT, quattro_formaggi TEXT, quattro_stagioni TEXT, supreme TEXT, tonno TEXT, status TEXT)')
         db.commit()
     app.run(debug=True)
