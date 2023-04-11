@@ -1,0 +1,114 @@
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  body {
+    background-color: #F2F2F2;
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+/* HEADER */
+header {
+    background-color: #009246;
+    padding: 10px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0px;
+  }
+  
+  .logo-container {
+    margin-left: auto;
+  }
+  
+  .headlogo {
+    width: 350px;
+    height: 150px;
+  }
+  
+  .header-text {
+    margin-left: 10px;
+  }
+  
+  /* End of HEADER */
+
+/* NAVIGATION */
+nav {
+    margin-top: 5px;
+    background-color: #CE2B37;
+    padding: 0.1px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #cccccc;
+  }
+  
+  nav ul li {
+    color: #cccccc;
+  }
+  
+  /* End of NAVIGATION */
+
+  /* MAIN */
+  main {
+    background-color: #ffffff;
+    padding: 1px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .welcometext p {
+    color: #6D4C41;
+    font-size: 20px;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .welcometext h2 {
+    color: #CE2B37;
+    font-size: 30px;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+/* END OF MAIN */
+
+/* FOOTER */
+.footer {
+    padding: 1px;
+    color: #00005a;
+    text-align: center;
+    margin-top: auto;
+  }
+/* End of FOOTER */

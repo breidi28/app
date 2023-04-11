@@ -24,6 +24,10 @@ def close_db(error):
 def index():
     return render_template('index.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 @app.route('/mario', methods=['GET', 'POST'])
 def order():
     if request.method == 'POST':

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='contact.css') }}">
+    <title>Contact us</title>
+</head>
+<body>
+    <header>
+        <div class="header-text">
+            <h1>Mario and Luigi's Pizzeria</h1>
+        </div>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo2.png') }}" alt="Logo" class="headlogo">
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="welcometext">
+            <h2>Contact Us</h2>
+            <p>If you have any questions about how to use the website, contact service center: EmailDoesntExist@gmail.com</p>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2023 Mario and Luigi's Pizzeria</p>
+    </footer>    
+</body>
+</html>
