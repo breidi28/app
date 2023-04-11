@@ -1,84 +1,82 @@
 from fhict_cb_01.CustomPymata4 import CustomPymata4
 import requests
 import time
+import serial
+from bs4 import BeautifulSoup
+import sqlite3
 
 URL = 'http://localhost:5000/dashboard'
-LDRPIN = 2
+DATABASE = 'orders.db'
 BUTTON1PIN = 8
 BUTTON2PIN = 9
 
-print('Starting up...')
+response = requests.post("http://localhost:5000/send_data")
+orders = response.json()
+orders = orders['orders']
 
-global board
-board = CustomPymata4(com_port = "COM8")
-board.set_pin_mode_digital_input_pullup(BUTTON1PIN)
-board.set_pin_mode_digital_input_pullup(BUTTON2PIN)
-board.displayOn()
+def setup():
+    global board
+    board = CustomPymata4(com_port="COM7")
+    board.displayOn()
+    board.set_pin_mode_digital_input_pullup(BUTTON1PIN)
+    board.set_pin_mode_digital_input_pullup(BUTTON2PIN)
+    return board
 
-while True:
-    response = requests.get(URL)
-    if response.content:
-        orders = response.json()
-        if len(orders) > 0:
-            order = orders[0]
-            board.displayClear()
-            board.displayPrint(order['name'])
-            board.displayPrint('Pepperoni: ' + order['pepperoni'] + ' ' + order['pepperoni_size'])
-            board.displayPrint('Mushroom: ' + order['mushroom'] + ' ' + order['mushroom_size'])
-            board.displayPrint('Cheese: ' + order['cheese'] + ' ' + order['cheese_size'])
-            board.displayPrint('Status: ' + order['status'])
-            board.displayPrint('Press button 1 to')
-            board.displayPrint('accept order')
-            board.displayPrint('Press button 2 to')
-            board.displayPrint('reject order')
-            board.displayPrint('Press button 1 and 2')
-            board.displayPrint('to cancel order')
-            # wait for button 1 to be pressed
-            while True:
-                if board.digital_read(BUTTON1PIN) == 0:
-                    # button 1 pressed
-                    print('Button 1 pressed')
-                    break
-                elif board.digital_read(BUTTON2PIN) == 0:
-                    # button 2 pressed
-                    print('Button 2 pressed')
-                    break
-                time.sleep(0.1)
-            # wait for button 1 and 2 to be pressed
-            while True:
-                if board.digital_read(BUTTON1PIN) == 0 and board.digital_read(BUTTON2PIN) == 0:
-                    # button 1 and 2 pressed
-                    print('Button 1 and 2 pressed')
-                    break
-                time.sleep(0.1)
-            # wait for button 1 and 2 to be released
-            while True:
-                if board.digital_read(BUTTON1PIN) == 1 and board.digital_read(BUTTON2PIN) == 1:
-                    # button 1 and 2 released
-                    print('Button 1 and 2 released')
-                    break
-                time.sleep(0.1)
-            # send request to update order status
-            if board.digital_read(BUTTON1PIN) == 0:
-                # button 1 pressed
-                requests.post('http://localhost:5000/dashboard', json={'id': order['id'], 'status': 'accepted'})
-            elif board.digital_read(BUTTON2PIN) == 0:
-                # button 2 pressed
-                requests.post('http://localhost:5000/dashboard', json={'id': order['id'], 'status': 'rejected'})
-            else:
-                # button 1 and 2 pressed
-                requests.post('http://localhost:5000/dashboard', json={'id': order['id'], 'status': 'cancelled'})
-        else:
-            board.displayClear()
-            board.displayPrint('No orders')
-            board.displayPrint('available')
-            time.sleep(1)
-    else:
-        board.displayClear()
-        board.displayPrint('No orders')
-        board.displayPrint('available')
-        time.sleep(1)
+times = {
+    'pepperoni': 10,
+    'cheese': 8,
+    'veggie': 6,
+    'meat_lovers': 7,
+    'vegan': 5,
+    'quattro_formaggi': 9,
+    'quattro_stagioni': 11,
+    'supreme': 7,
+    'tonno': 8
+}
+counts = {}
+for order in orders:
+    for pizza_type in times.keys():
+        if order[pizza_type] != '0':
+            if pizza_type not in counts:
+                counts[pizza_type] = 0
+            counts[pizza_type] += 1
 
-    time.sleep(0.1)
+times_per_pizza = {}
+for pizza_type, count in counts.items():
+    times_per_pizza[pizza_type] = count * times[pizza_type]
 
+def loop():
+    count_nr_pizzas = 0
+    for pizza_type, time_sec in times_per_pizza.items():
+        count_nr_pizzas += 1
+    for pizza_type, time_sec in times_per_pizza.items():
+        board.displayShow(pizza_type)
+        time.sleep(2)
+        board.displayShow(str(time_sec))
+        time.sleep(2)
+        level1 = board.digital_read(BUTTON1PIN)[0]
+        while level1 == 1:
+            level1 = board.digital_read(BUTTON1PIN)[0]
+            time.sleep(0.01)
+        if level1 == 0:
+                while time_sec > 0:
+                    board.displayShow(str(time_sec))
+                    time.sleep(1)
+                    time_sec -= 1
+                time.sleep(1)
+        
+                
+    board.displayShow('done')
+    time.sleep(1)
+    #update the database
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    c.execute("UPDATE orders SET status = 'ready' WHERE status = 'pending'")
+    conn.commit()
+    conn.close()
+    board.displayOff()
+        
 
+if __name__ == '__main__':
+    setup()
+    loop()
