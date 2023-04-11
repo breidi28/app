@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="styles.css" type="text/css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Pizzeria Menu</title>
+</head>
+<body>
+    <header>
+        <h1>Mario and Luigi's Pizzeria</h1>
+    </header>
+
+      <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <br>
+        <h2>Pizza Order:</h2>
+        <label for="pepperoni">Pepperoni:</label>
+        <input type="number" id="pepperoni" name="pepperoni" min="0" max="10" value="0" required>
+        <br>
+        <label><input type="radio" name="pepperoni_size" value="small" >Small</label>
+        <label><input type="radio" name="pepperoni_size" value="medium">Medium</label>
+        <label><input type="radio" name="pepperoni_size" value="large">Large</label>
+        <br>
+        <br>
+        <label for="mushroom">Mushroom:</label>
+        <input type="number" id="mushroom" name="mushroom" min="0" max="10" value="0" required>
+        <br>
+        <label><input type="radio" name="mushroom_size" value="small" >Small</label>
+        <label><input type="radio" name="mushroom_size" value="medium">Medium</label>
+        <label><input type="radio" name="mushroom_size" value="large">Large</label>
+        <br>
+        <br>
+        <label for="cheese">Cheese:</label>
+        <input type="number" id="cheese" name="cheese" min="0" max="10" value="0" required>
+        <br>
+        <label><input type="radio" name="cheese_size" value="small" >Small</label>
+        <label><input type="radio" name="cheese_size" value="medium">Medium</label>
+        <label><input type="radio" name="cheese_size" value="large">Large</label>
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

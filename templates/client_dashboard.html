@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <title>Client Dashboard</title>
+    </head>
+    <body>
+        <header>
+            <h1>Client Dashboard</h1>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order['name'] }}</td>
+                        <td>{{ order['status'] }}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+    </body>
+
+</html>
