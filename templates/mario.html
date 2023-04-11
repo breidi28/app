@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="CSS/mario.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mario.css') }}">
+    <title>Menu Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Mario and Luigi's Pizzeria</h1>
+    </header>
+    <main>      
+        <form action="/mario" method="post">
+            <div class="menu">
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Pepperoni</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="pepperoni"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="pepperoni" name="pepperoni" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Cheese</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="cheese"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="cheese" name="cheese" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Menu Item 3</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="veggie"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="veggie" name="veggie" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Menu Item 4</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="meat_lovers"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="meat_lovers" name="meat_lovers" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Menu Item 5</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="vegan"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="vegan" name="vegan" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Menu Item 6</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="quattro_formaggi"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="quattro_formaggi" name="quattro_formaggi" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Menu Item 7</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="quattro_stagioni"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="quattro_stagioni" name="quattro_stagioni" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Menu Item 8</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="supreme"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="supreme" name="supreme" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo">
+                    <h2>Menu Item 9</h2>
+                    <p>Price: $10</p>
+                    <p>Ingredients: cheese, tomato sauce, pepperoni, sausage, mushrooms, onions, green peppers, black olives, and extra cheese.</p>
+                    <label for="tonno"></label>
+                    <div class="number-input">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                        <input class="quantity" type="number" id="tonno" name="tonno" min="0" max="10" value="0">
+                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                    </div>
+                </div>
+                <input type="submit" class="submitbutton" value="Finish the order">
+            </div>
+        </form>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2023 Mario and Luigi's Pizzeria</p>
+    </footer>
+</body>
+</html>

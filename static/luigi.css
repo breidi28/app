@@ -1,0 +1,41 @@
+header {
+    background-color: #d8d8d8;
+    padding: 10px;;
+    color: #00005a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.logo-container {
+    margin-left: auto;
+}
+
+.headlogo {
+    width: 150px;
+    height: 100px;
+}
+
+.header-text {
+    margin-left: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    color: #588c7e;
+    font-family: monospace;
+    font-size: 25px;
+    text-align: left;
+}
+
+th{
+    background-color: #588c7e;
+    color: white;
+}

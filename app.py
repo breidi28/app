@@ -19,8 +19,13 @@ def close_db(error):
     if db is not None:
         db.close()
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+@app.route('/index')
 def index():
+    return render_template('index.html')
+
+@app.route('/mario', methods=['GET', 'POST'])
+def order():
     if request.method == 'POST':
         name = request.form.get('name')
         pepperoni = request.form.get('pepperoni')
@@ -38,7 +43,7 @@ def index():
         cursor.close()
         return render_template('order.html', name=name)
     else:
-        return render_template('index.html')
+        return render_template('mario.html')
         
 @app.route('/dashboard')
 def dashboard():

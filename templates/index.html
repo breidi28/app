@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="styles.css" type="text/css"> -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Pizzeria Menu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <link rel="stylesheet" href="CSS/styles.css"> -->
+    <title>Mario and Luigi's Pizzeria</title>
 </head>
-<body>
-    <header>
-        <h1>Mario and Luigi's Pizzeria</h1>
-    </header>
-
-      <form method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-        <br>
-        <h2>Pizza Order:</h2>
-        <label for="pepperoni">Pepperoni:</label>
-        <input type="number" id="pepperoni" name="pepperoni" min="0" max="10" value="0" required>
-        <br>
-        <label><input type="radio" name="pepperoni_size" value="small" >Small</label>
-        <label><input type="radio" name="pepperoni_size" value="medium">Medium</label>
-        <label><input type="radio" name="pepperoni_size" value="large">Large</label>
-        <br>
-        <br>
-        <label for="mushroom">Mushroom:</label>
-        <input type="number" id="mushroom" name="mushroom" min="0" max="10" value="0" required>
-        <br>
-        <label><input type="radio" name="mushroom_size" value="small" >Small</label>
-        <label><input type="radio" name="mushroom_size" value="medium">Medium</label>
-        <label><input type="radio" name="mushroom_size" value="large">Large</label>
-        <br>
-        <br>
-        <label for="cheese">Cheese:</label>
-        <input type="number" id="cheese" name="cheese" min="0" max="10" value="0" required>
-        <br>
-        <label><input type="radio" name="cheese_size" value="small" >Small</label>
-        <label><input type="radio" name="cheese_size" value="medium">Medium</label>
-        <label><input type="radio" name="cheese_size" value="large">Large</label>
-        <br>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
-</body>
+    <body>
+        <header>
+            <div class="header-text">
+                <h1>Mario and Luigi's Pizzeria</h1>
+            </div>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='italy.png') }}" alt="Logo" class="headlogo">
+            </div>
+        </header>
+        <main>
+            <div class="welcometext">
+                <img src="{{ url_for('static', filename='Placeholder.png') }}" alt="Logo" class="mainlogo">
+                <h2>Welcome!</h2>
+                <p>Who is using</p>
+            </div>
+            <div class="button-container">
+                <button id="mariobutton">
+                    <a href="/mario">
+                        <img src="{{ url_for('static', filename='mariohat.png') }}" alt="Logo" class="button-logo"><br>Mario
+                    </a>
+                </button>
+                <button id="luigibutton">
+                    <a href="/dashboard">
+                        <img src="{{ url_for('static', filename='luigihat.png') }}" alt="Logo" class="button-logo"><br>Luigi
+                    </a>
+                </button>
+            </div>
+        </main>
+        <nav>
+            <ul>
+                <li><a href="contact.html">Contact service center</a></li>
+            </ul>
+        </nav>
+        <footer class="footer">
+            <p>&copy; 2023 Mario and Luigi's Pizzeria</p>
+        </footer>
+    </body>
 </html>
