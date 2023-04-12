@@ -33,6 +33,7 @@ times = {
     'supreme': 7,
     'tonno': 8
 }
+
 counts = {}
 for order in orders:
     for pizza_type in times.keys():
@@ -73,17 +74,8 @@ def loop():
     c = conn.cursor()
     c.execute("UPDATE orders SET status = 'ready' WHERE status = 'pending'")
     conn.commit()
-    conn.close()
-    level2 = board.digital_read(BUTTON2PIN)[0]
-        
+    conn.close() 
 
 if __name__ == '__main__':
     setup()
-    while True:
-        loop()
-        level2 = board.digital_read(BUTTON2PIN)[0]
-        while level2 == 0:
-            continue
-        else:
-            break
-        
+    loop()
