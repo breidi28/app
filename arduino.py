@@ -16,7 +16,7 @@ orders = orders['orders']
 
 def setup():
     global board
-    board = CustomPymata4(com_port="COM7")
+    board = CustomPymata4(com_port="COM9")
     board.displayOn()
     board.set_pin_mode_digital_input_pullup(BUTTON1PIN)
     board.set_pin_mode_digital_input_pullup(BUTTON2PIN)
@@ -46,6 +46,9 @@ for pizza_type, count in counts.items():
     times_per_pizza[pizza_type] = count * times[pizza_type]
 
 def loop():
+    if len(orders) == 0:
+        board.displayShow('ready')
+        time.sleep(5)
     count_nr_pizzas = 0
     for pizza_type, time_sec in times_per_pizza.items():
         count_nr_pizzas += 1
@@ -64,19 +67,23 @@ def loop():
                     time.sleep(1)
                     time_sec -= 1
                 time.sleep(1)
-        
-                
     board.displayShow('done')
     time.sleep(1)
-    #update the database
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     c.execute("UPDATE orders SET status = 'ready' WHERE status = 'pending'")
     conn.commit()
     conn.close()
-    board.displayOff()
+    level2 = board.digital_read(BUTTON2PIN)[0]
         
 
 if __name__ == '__main__':
     setup()
-    loop()
+    while True:
+        loop()
+        level2 = board.digital_read(BUTTON2PIN)[0]
+        while level2 == 0:
+            continue
+        else:
+            break
+        
